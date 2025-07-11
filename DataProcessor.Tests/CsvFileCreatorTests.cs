@@ -94,7 +94,7 @@ public class CsvFileCreatorTests : IDisposable
     [InlineData(null)]
     [InlineData("")]
     [InlineData(" ")]
-    public void CreateFile_InvalidFilePath_ThrowsArgumentException(string invalidPath)
+    public void CreateFile_InvalidFilePath_ThrowsArgumentException(string? invalidPath)
     {
         // Arrange
         var mockMessageBuilder = new Mock<IMessageBuilder<DataRecord>>();
@@ -102,6 +102,6 @@ public class CsvFileCreatorTests : IDisposable
         
         // Act & Assert
         Assert.Throws<ArgumentException>(() => 
-            fileCreator.CreateFile(new List<DataRecord>(), invalidPath));
+            fileCreator.CreateFile(new List<DataRecord>(), invalidPath!));
     }
 }

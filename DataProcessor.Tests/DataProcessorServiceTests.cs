@@ -90,7 +90,7 @@ public class DataProcessorServiceTests
     [InlineData(null)]
     [InlineData("")]
     [InlineData(" ")]
-    public void WriteDataFile_InvalidPath_ThrowsArgumentException(string invalidPath)
+    public void WriteDataFile_InvalidPath_ThrowsArgumentException(string? invalidPath)
     {
         // Arrange
         var mockMessageBuilder = new Mock<IMessageBuilder<DataRecord>>();
@@ -104,6 +104,6 @@ public class DataProcessorServiceTests
         };
         
         // Act & Assert
-        Assert.Throws<ArgumentException>(() => processor.WriteDataFile(testData, invalidPath));
+        Assert.Throws<ArgumentException>(() => processor.WriteDataFile(testData, invalidPath!));
     }
 }

@@ -185,7 +185,9 @@ public class FixedDelimiterMessageBuilderTests
     [InlineData("Name\"With\"Quotes", "Name with quotes")]
     public void BuildMessage_SpecialNameCharacters_HandlesCorrectly(string name, string testName)
     {
-        // Arrange - testName is just used for describing the test case
+        // Arrange - Using the testName parameter for logging/documentation of the test case
+        System.Console.WriteLine($"Testing special name format: {testName}");
+        
         var messageBuilder = new FixedDelimiterMessageBuilder();
         var dataRecord = new DataRecord
         {
