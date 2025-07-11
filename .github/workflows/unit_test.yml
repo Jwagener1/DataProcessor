@@ -1,0 +1,46 @@
+name: .NET Core Desktop
+
+on:
+  push:
+    branches: [ "master" ]
+  pull_request:
+    branches: [ "master" ]
+
+jobs:
+  build:
+    strategy:
+      matrix:
+        configuration: [Release]
+
+    runs-on: windows-latest
+
+    env:
+      Solution_Name:               DataProcessorSolution.sln
+      UnitTest_Project_Path:       DataProcessor.Tests\DataProcessor.Tests.csproj
+      IntegrationTest_Project_Path: DataProcessor.IntegrationTests\DataProcessor.IntegrationTests.csproj
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Install .NET SDK
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 8.0.x
+
+      - name: Setup MSBuild
+        uses: microsoft/setup-msbuild@v2
+
+      - name: Restore solution
+        run: msbuild ${{ env.Solution_Name }} /t:Restore /p:Configuration=${{ matrix.configuration }}
+
+      - name: Build solution
+        run: msbuild ${{ env.Solution_Name }} /p:Configuration=${{ matrix.configuration }} /m
+
+      - name: Run unit tests
+        run: dotnet test ${{ env.UnitTest_Project_Path }} --configuration ${{ matrix.configuration }} --no-build --verbosity normal
+
+      - name: Run integration tests
+        run: dotnet test ${{ env.IntegrationTest_Project_Path }} --configuration ${{ matrix.configuration }} --no-build --verbosity normal
