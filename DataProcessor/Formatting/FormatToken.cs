@@ -33,6 +33,7 @@ public class FormatToken
     /// Creates a key-based format token
     /// </summary>
     /// <param name="key">The key to use for retrieving a value from data</param>
+    /// <param name="isKey">Must be true to indicate this is a key-based token</param>
     public FormatToken(string key, bool isKey)
     {
         if (!isKey)

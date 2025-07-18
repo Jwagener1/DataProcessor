@@ -1,0 +1,13 @@
+      0.08   131.31098607801793               2.90      2.80     16.40
+	  
+	  
+	  
+	  
+	  
+	  weight	= 	10 char
+	  volume	= 	09 char
+	  barcode	=	12 char
+	  blank		=	09 char
+	  length	=	10 char
+	  width		=	10 char
+	  height	=	10 char

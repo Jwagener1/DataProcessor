@@ -43,6 +43,17 @@ public class FlexibleRecord
     public bool ContainsKey(string key) => _data.ContainsKey(key);
     
     /// <summary>
+    /// Tries to get a value from the record
+    /// </summary>
+    /// <param name="key">The key for the value</param>
+    /// <param name="value">The value if found, or null if not found</param>
+    /// <returns>True if the key was found, false otherwise</returns>
+    public bool TryGetValue(string key, out object? value)
+    {
+        return _data.TryGetValue(key, out value);
+    }
+    
+    /// <summary>
     /// Gets a typed value from the record
     /// </summary>
     /// <typeparam name="T">The type to convert the value to</typeparam>
